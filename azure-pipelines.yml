@@ -11,7 +11,6 @@ pool:
 
 steps:
 - script: echo Hello, world!
-  displayName: 'Run a one-line script'
 
 - task: DotNetCoreCLI@2
   inputs:
@@ -21,7 +20,7 @@ steps:
 - task: CopyFiles@2
   inputs:
     SourceFolder: '$(Agent.BuildDirectory)'
-    Contents: 'bin/**/*.dll'
+    Contents: 'bin/**/**/**'
     TargetFolder: '$(Build.ArtifactStagingDirectory)'
 
 - task: PublishBuildArtifacts@1
