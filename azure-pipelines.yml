@@ -41,5 +41,5 @@ steps:
     ConnectionType: 'AzureRM'
     azureSubscription: 'AzureWebApp'
     appType: 'webApp'
-    WebAppName: 'My-WebApp'
+    WebAppName: 'rg-webapp-123'
     packageForLinux: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
