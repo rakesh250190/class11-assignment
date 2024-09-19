@@ -16,9 +16,16 @@ steps:
   inputs:
     command: 'build'
 
+
+- task: CopyFiles@2
+  inputs:
+    SourceFolder: '$(agent.builddirectory)'
+    Contents: '**/bin/**/**/**'
+    TargetFolder: '$(build.artifactstagingdirectory)'
+
 - task: ArchiveFiles@2
   inputs:
-    rootFolderOrFile: 'bin/*/*/*'
+    rootFolderOrFile: '$(build.artifactstagingdirectory)'
     includeRootFolder: true
     archiveType: 'zip'
     archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
@@ -29,12 +36,6 @@ steps:
     PathtoPublish: '$(Build.ArtifactStagingDirectory)'
     ArtifactName: 'drop'
     publishLocation: 'Container'
-# - task: CopyFiles@2
-#   inputs:
-#     SourceFolder: '$(agent.builddirectory)'
-#     Contents: '**/bin/**/**/**'
-#     TargetFolder: '$(build.artifactstagingdirectory)'
-
 # - task: AzureRmWebAppDeployment@4
 #   inputs:
 #     ConnectionType: 'AzureRM'
