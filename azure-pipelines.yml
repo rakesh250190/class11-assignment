@@ -14,14 +14,12 @@ steps:
 
 - task: DotNetCoreCLI@2
   inputs:
-    command: 'pack'
-    packagesToPack: '**/*.csproj'
-    versioningScheme: 'off'
+    command: 'build'
 
 - task: CopyFiles@2
   inputs:
     SourceFolder: '$(agent.builddirectory)'
-    Contents: '*.nupkg'
+    Contents: '**/**/**/'
     TargetFolder: '$(build.artifactstagingdirectory)'
 
 - task: PublishBuildArtifacts@1
