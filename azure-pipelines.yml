@@ -14,8 +14,7 @@ steps:
 
 - task: DotNetCoreCLI@2
   inputs:
-    command: 'publish'
-    publishWebProjects: true
+    command: 'build'
 
 
 - task: CopyFiles@2
@@ -38,6 +37,7 @@ steps:
     ArtifactName: 'drop'
     publishLocation: 'Container'
   
+   
 - task: AzureRmWebAppDeployment@4
   inputs:
     ConnectionType: 'AzureRM'
@@ -45,3 +45,6 @@ steps:
     appType: 'webApp'
     WebAppName: 'rg-webapp-123'
     packageForLinux: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
+    enableCustomDeployment: true
+    DeploymentType: 'webDeploy'
+  
