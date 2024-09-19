@@ -15,16 +15,9 @@ steps:
 - task: DotNetCoreCLI@2
   inputs:
     command: 'build'
-
-
-- task: CopyFiles@2
+- task: DotNetCoreCLI@2
   inputs:
-    SourceFolder: '$(Agent.BuildDirectory)'
-    Contents: 'bin/**/**/**'
-    TargetFolder: '$(Build.ArtifactStagingDirectory)'
+    command: 'pack'
+    packagesToPack: '**/*.csproj'
+    versioningScheme: 'off'
 
-- task: PublishBuildArtifacts@1
-  inputs:
-    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-    ArtifactName: 'drop'
-    publishLocation: 'Container'
