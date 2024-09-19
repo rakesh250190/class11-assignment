@@ -19,7 +19,7 @@ steps:
 
 - task: CopyFiles@2
   inputs:
-    SourceFolder: '$(agent.builddirectory)/*/bin/*/*'
+    SourceFolder: '$(agent.builddirectory)/**/bin/**/**/'
     Contents: '**'
     TargetFolder: '$(build.artifactstagingdirectory)'
 
