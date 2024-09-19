@@ -11,13 +11,11 @@ pool:
 
 steps:
 - script: echo Hello, world!
-- task: UseDotNet@2
-  inputs:
-    packageType: 'sdk'
-    version: '8.*'
+
 - task: DotNetCoreCLI@2
   inputs:
-    command: 'build'
+    command: 'publish'
+    publishWebProjects: true
 
 
 - task: CopyFiles@2
